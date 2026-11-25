@@ -1,0 +1,29 @@
+[
+  {
+    "id": "unieke_vraag_id_1",
+    "category": "Woningmarkt",
+    "target_ages": ["25-39"],
+    "title": "Gemiddelde transactieprijs koopwoning",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 438000,
+    "baseline_formatted": "€ 438.000",
+    "unit": "euro",
+    "actual_value": 468000,
+    "actual_formatted": "€ 468.000",
+    "actual_change_pct": 6.8,
+    "tolerance_pct": 6.0,
+    "slider_range": {
+      "min": -20.0,
+      "max": 30.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 was de gemiddelde verkoopprijs van een bestaande koopwoning **€ 438.000**. Hoeveel procent veranderde de gemiddelde huizenprijs in 2026?",
+    "value_format_preview": "€ {val:,.0f}",
+    "explanation": "Aanhoudende loonstijgingen en een structureel tekort aan nieuwbouwwoningen stuwden de prijzen op de woningmarkt in 2026 verder omhoog met +6,8%.",
+    "cbs_article_title": "CBS StatLine: Bestaande koopwoningen; prijsindex (85773NED)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/85773NED/table",
+    "statline_table_id": "85773NED"
+  }
+]

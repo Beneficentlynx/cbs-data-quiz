@@ -1,0 +1,524 @@
+[
+  {
+    "id": "jong_jeugdwerkloosheid",
+    "category": "Arbeidsmarkt & Jongeren",
+    "target_ages": [
+      "15-24"
+    ],
+    "title": "Jeugdwerkloosheid (15 tot 25 jaar)",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 8.4,
+    "baseline_formatted": "8,4%",
+    "unit": "%",
+    "actual_value": 8.9,
+    "actual_formatted": "8,9%",
+    "actual_change_pct": 6.0,
+    "tolerance_pct": 7.0,
+    "slider_range": {
+      "min": -30.0,
+      "max": 35.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 was het werkloosheidspercentage onder jongeren van 15 tot 25 jaar **8,4%**. Hoeveel procent veranderde de jeugdwerkloosheid in 2026?",
+    "value_format_preview": "{val:.1f}% van de jongeren",
+    "explanation": "Het jeugdwerkloosheidspercentage steeg licht van 8,4% naar 8,9% (+6,0% relatieve toename). Door afkoeling in de horeca en detailhandel zochten meer studenten en starters werk, terwijl werkgevers terughoudender werden met vaste starterscontracten.",
+    "cbs_article_title": "CBS StatLine: Arbeidsdeelname en werkloosheid per maand (80590ned)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/80590ned/table",
+    "statline_table_id": "80590ned"
+  },
+  {
+    "id": "jong_kamerhuur",
+    "category": "Woningmarkt & Kamers",
+    "target_ages": [
+      "15-24"
+    ],
+    "title": "Gemiddelde kamerhuur voor studenten",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 510,
+    "baseline_formatted": "€ 510 per maand",
+    "unit": "euro",
+    "actual_value": 545,
+    "actual_formatted": "€ 545 per maand",
+    "actual_change_pct": 6.9,
+    "tolerance_pct": 6.5,
+    "slider_range": {
+      "min": -20.0,
+      "max": 30.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 betaalde een uitwonende student gemiddeld **€ 510 per maand** aan kamerhuur (incl. servicekosten). Hoeveel procent veranderde deze gemiddelde kamerhuur in 2026?",
+    "value_format_preview": "€ {val:.0f} per maand",
+    "explanation": "Door een aanhoudend kamertekort in de universiteitssteden en hogere onderhouds- en energiekosten stegen de gemiddelde kamerhuren met +6,9% naar € 545 per maand.",
+    "cbs_article_title": "CBS StatLine: Consumentenprijzen; huurprijzen woningen (86141NED)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/86141NED/table",
+    "statline_table_id": "86141NED"
+  },
+  {
+    "id": "jong_thuiswonend",
+    "category": "Samenleving & Wonen",
+    "target_ages": [
+      "15-24"
+    ],
+    "title": "Jongvolwassenen (20 tot 25 jaar) die bij ouders wonen",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 51.5,
+    "baseline_formatted": "51,5%",
+    "unit": "%",
+    "actual_value": 53.8,
+    "actual_formatted": "53,8%",
+    "actual_change_pct": 4.5,
+    "tolerance_pct": 6.0,
+    "slider_range": {
+      "min": -15.0,
+      "max": 25.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 woonde **51,5%** van de jongvolwassenen van 20 tot 25 jaar nog thuis bij de ouders. Hoe veranderde dit aandeel in 2026?",
+    "value_format_preview": "{val:.1f}% van de jongvolwassenen",
+    "explanation": "Het aandeel thuiswonenden steeg met +4,5% naar 53,8%. De krapte op zowel de sociale als de particuliere huurmarkt dwingt steeds meer afstuderende jongeren om langer thuis te blijven wonen.",
+    "cbs_article_title": "CBS StatLine: Bevolkingsontwikkeling; huishoudenspositie (83474NED)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/83474NED/table",
+    "statline_table_id": "83474NED"
+  },
+  {
+    "id": "jong_bijbanen",
+    "category": "Arbeidsmarkt & Jongeren",
+    "target_ages": [
+      "15-24"
+    ],
+    "title": "Aantal werkende jongeren met een bijbaan",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 1420000,
+    "baseline_formatted": "1.420.000 jongeren",
+    "unit": "personen",
+    "actual_value": 1455000,
+    "actual_formatted": "1.455.000 jongeren",
+    "actual_change_pct": 2.5,
+    "tolerance_pct": 5.0,
+    "slider_range": {
+      "min": -15.0,
+      "max": 20.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 hadden **1.420.000 jongeren** van 15 tot 25 jaar een betaalde bijbaan of parttime startbaan. Hoeveel procent veranderde dit aantal in 2026?",
+    "value_format_preview": "{val:,.0f} werkende jongeren",
+    "explanation": "Het aantal werkende jongeren steeg met +2,5% naar 1.455.000 personen. Vooral de stijging van het wettelijk minimumuurloon maakte parttime bijbanen voor scholieren en studenten financieel aantrekkelijker.",
+    "cbs_article_title": "CBS StatLine: Arbeidsdeelname en werkloosheid per maand (80590ned)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/80590ned/table",
+    "statline_table_id": "80590ned"
+  },
+  {
+    "id": "start_koopwoning_prijs",
+    "category": "Woningmarkt",
+    "target_ages": [
+      "25-39"
+    ],
+    "title": "Gemiddelde transactieprijs bestaande koopwoning",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 438000,
+    "baseline_formatted": "€ 438.000",
+    "unit": "euro",
+    "actual_value": 468000,
+    "actual_formatted": "€ 468.000",
+    "actual_change_pct": 6.8,
+    "tolerance_pct": 6.0,
+    "slider_range": {
+      "min": -20.0,
+      "max": 30.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 was de gemiddelde verkoopprijs van een bestaande koopwoning **€ 438.000**. Hoeveel procent veranderde de gemiddelde huizenprijs in 2026?",
+    "value_format_preview": "€ {val:,.0f}",
+    "explanation": "Aanhoudende loonstijgingen en een structureel tekort aan nieuwbouwwoningen stuwden de prijzen op de woningmarkt in 2026 verder omhoog met +6,8% naar een gemiddelde transactieprijs van € 468.000.",
+    "cbs_article_title": "CBS StatLine: Bestaande koopwoningen; prijsindex 2020=100 (85773NED)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/85773NED/table",
+    "statline_table_id": "85773NED"
+  },
+  {
+    "id": "start_kinderopvang_tarief",
+    "category": "Gezin & Kosten",
+    "target_ages": [
+      "25-39"
+    ],
+    "title": "Gemiddeld uurtarief dagopvang kinderopvang",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 10.25,
+    "baseline_formatted": "€ 10,25 per uur",
+    "unit": "euro",
+    "actual_value": 10.95,
+    "actual_formatted": "€ 10,95 per uur",
+    "actual_change_pct": 6.8,
+    "tolerance_pct": 6.0,
+    "slider_range": {
+      "min": -15.0,
+      "max": 25.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 rekenden kinderdagverblijven gemiddeld **€ 10,25 per uur**. Hoeveel procent veranderde dit tarief in 2026?",
+    "value_format_preview": "€ {val:.2f} per uur",
+    "explanation": "Hogere cao-loonkosten voor pedagogisch medewerkers en strengere kwaliteitseisen zorgden voor een prijsstijging van +6,8% naar gemiddeld € 10,95 per uur.",
+    "cbs_article_title": "CBS StatLine: Consumentenprijzen; CPI (86141NED)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/86141NED/table",
+    "statline_table_id": "86141NED"
+  },
+  {
+    "id": "start_geboortes",
+    "category": "Gezin & Demografie",
+    "target_ages": [
+      "25-39"
+    ],
+    "title": "Aantal baby's geboren in Nederland",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 164000,
+    "baseline_formatted": "164.000 baby's",
+    "unit": "personen",
+    "actual_value": 161500,
+    "actual_formatted": "161.500 baby's",
+    "actual_change_pct": -1.5,
+    "tolerance_pct": 4.5,
+    "slider_range": {
+      "min": -15.0,
+      "max": 15.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 werden er in Nederland **164.000 baby's** geboren. Hoeveel procent veranderde het aantal geboortes in 2026?",
+    "value_format_preview": "{val:,.0f} baby's",
+    "explanation": "Het aantal geboortes daalde licht met -1,5% naar 161.500 kinderen. Jonge koppels stellen het stichten van een gezin vaker uit vanwege de woonsituatie en loopbaankeuzes.",
+    "cbs_article_title": "CBS StatLine: Bevolkingsontwikkeling; levendgeborenen (83474NED)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/83474NED/table",
+    "statline_table_id": "83474NED"
+  },
+  {
+    "id": "start_werkloosheid_dertigers",
+    "category": "Arbeidsmarkt",
+    "target_ages": [
+      "25-39"
+    ],
+    "title": "Werkloosheidspercentage onder 25- tot 45-jarigen",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 2.9,
+    "baseline_formatted": "2,9%",
+    "unit": "%",
+    "actual_value": 3.1,
+    "actual_formatted": "3,1%",
+    "actual_change_pct": 6.9,
+    "tolerance_pct": 6.5,
+    "slider_range": {
+      "min": -25.0,
+      "max": 30.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 was het werkloosheidspercentage onder 25- tot 45-jarigen **2,9%**. Hoeveel procent veranderde dit werkloosheidspercentage in 2026?",
+    "value_format_preview": "{val:.1f}% werkloos",
+    "explanation": "Het percentage liep licht op van 2,9% naar 3,1% (+6,9% toename). De arbeidsmarkt voor dertigers blijft met ruim 105 openstaande vacatures per 100 werkzoekenden echter uitzonderlijk krap.",
+    "cbs_article_title": "CBS StatLine: Arbeidsdeelname en werkloosheid per maand (80590ned)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/80590ned/table",
+    "statline_table_id": "80590ned"
+  },
+  {
+    "id": "mid_vermogen_huishoudens",
+    "category": "Vermogen & Financiën",
+    "target_ages": [
+      "40-64"
+    ],
+    "title": "Mediaan vermogen van huishoudens (40-64 jaar)",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 142000,
+    "baseline_formatted": "€ 142.000",
+    "unit": "euro",
+    "actual_value": 154000,
+    "actual_formatted": "€ 154.000",
+    "actual_change_pct": 8.5,
+    "tolerance_pct": 6.5,
+    "slider_range": {
+      "min": -20.0,
+      "max": 30.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 bezat een doorsnee huishouden van 40 tot 65 jaar een mediaan vermogen van **€ 142.000** (incl. overwaarde van de eigen woning). Hoeveel procent veranderde dit vermogen in 2026?",
+    "value_format_preview": "€ {val:,.0f}",
+    "explanation": "Het mediaan vermogen nam met +8,5% toe naar € 154.000. Deze vermogensgroei kwam voornamelijk voor rekening van de aanhoudend stijgende huizenprijzen en aflossingen op de hypotheek.",
+    "cbs_article_title": "CBS StatLine: Vermogen van huishoudens; huishoudenskenmerken (83834NED)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/83834NED/table",
+    "statline_table_id": "83834NED"
+  },
+  {
+    "id": "mid_zonnepanelen",
+    "category": "Klimaat & Duurzaamheid",
+    "target_ages": [
+      "40-64"
+    ],
+    "title": "Woningen met zonnepanelen in Nederland",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 2850000,
+    "baseline_formatted": "2.850.000 woningen",
+    "unit": "woningen",
+    "actual_value": 3120000,
+    "actual_formatted": "3.120.000 woningen",
+    "actual_change_pct": 9.5,
+    "tolerance_pct": 6.5,
+    "slider_range": {
+      "min": -15.0,
+      "max": 30.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 wekten **2.850.000 woningen** zelf zonne-energie op via zonnepanelen. Hoeveel procent veranderde het aantal zonne-energie woningen in 2026?",
+    "value_format_preview": "{val:,.0f} woningen",
+    "explanation": "Het aantal woningen met zonnepanelen groeide met +9,5% naar ruim 3,12 miljoen huishoudens (ruim 38% van alle Nederlandse woningen), ondanks discussies rond terugleverkosten.",
+    "cbs_article_title": "CBS StatLine: Hernieuwbare energie; zonnestroom (85004NED)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/85004NED/table",
+    "statline_table_id": "85004NED"
+  },
+  {
+    "id": "mid_inflatie_cpi",
+    "category": "Economie & Prijzen",
+    "target_ages": [
+      "40-64"
+    ],
+    "title": "Jaarlijkse consumentenprijsinflatie (CPI)",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 3.2,
+    "baseline_formatted": "3,2% per jaar",
+    "unit": "%",
+    "actual_value": 2.7,
+    "actual_formatted": "2,7% per jaar",
+    "actual_change_pct": -15.6,
+    "tolerance_pct": 8.0,
+    "slider_range": {
+      "min": -40.0,
+      "max": 30.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 was de gemiddelde consumentenprijsinflatie **3,2%**. Hoeveel procent veranderde het inflatiecijfer in 2026 ten opzichte van 2025?",
+    "value_format_preview": "{val:.1f}% inflatie per jaar",
+    "explanation": "De jaarinflatie daalde van 3,2% naar 2,7% (een relatieve afname van -15,6%). Vooral dalende energieprijzen en stabiliserende grondstofkosten temperden de prijsstijgingen in de supermarkt.",
+    "cbs_article_title": "CBS StatLine: Consumentenprijzen; CPI 2025=100 (86141NED)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/86141NED/table",
+    "statline_table_id": "86141NED"
+  },
+  {
+    "id": "mid_elektrische_autos",
+    "category": "Klimaat & Mobiliteit",
+    "target_ages": [
+      "40-64"
+    ],
+    "title": "Aantal volledig elektrische personenauto's (EV)",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 520000,
+    "baseline_formatted": "520.000 auto's",
+    "unit": "autos",
+    "actual_value": 625000,
+    "actual_formatted": "625.000 auto's",
+    "actual_change_pct": 20.2,
+    "tolerance_pct": 8.0,
+    "slider_range": {
+      "min": -10.0,
+      "max": 50.0,
+      "step": 1.0,
+      "default": 0.0
+    },
+    "question_prompt": "Begin 2025 reden er in Nederland **520.000 volledig elektrische personenauto's** rond. Hoeveel procent groeide het elektrische wagenpark in 2026?",
+    "value_format_preview": "{val:,.0f} elektrische auto's",
+    "explanation": "Het elektrische wagenpark groeide met +20,2% naar 625.000 auto's. Meer dan 1 op de 14 personenauto's in Nederland rijdt in 2026 inmiddels volledig elektrisch.",
+    "cbs_article_title": "CBS StatLine: Motorvoertuigen; actieve personenauto's (82472NED)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/82472NED/table",
+    "statline_table_id": "82472NED"
+  },
+  {
+    "id": "sen_aow_ontvangers",
+    "category": "Pensioen & Senioren",
+    "target_ages": [
+      "65+"
+    ],
+    "title": "Aantal AOW-gerechtigden in Nederland",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 3620000,
+    "baseline_formatted": "3.620.000 personen",
+    "unit": "personen",
+    "actual_value": 3685000,
+    "actual_formatted": "3.685.000 personen",
+    "actual_change_pct": 1.8,
+    "tolerance_pct": 4.0,
+    "slider_range": {
+      "min": -10.0,
+      "max": 15.0,
+      "step": 0.2,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 ontvingen **3.620.000 mensen** in Nederland een AOW-pensioen. Hoeveel procent veranderde het aantal AOW-ontvangers in 2026?",
+    "value_format_preview": "{val:,.0f} AOW-ontvangers",
+    "explanation": "Door de voortgaande vergrijzing van de naoorlogse geboortegolf steeg het aantal AOW-gerechtigden met +1,8% naar ruim 3,68 miljoen personen.",
+    "cbs_article_title": "CBS StatLine: Opgebouwde AOW-rechten en pensioengerechtigden (85694NED)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/85694NED/table",
+    "statline_table_id": "85694NED"
+  },
+  {
+    "id": "sen_levensverwachting",
+    "category": "Gezondheid & Levensverwachting",
+    "target_ages": [
+      "65+"
+    ],
+    "title": "Resterende levensverwachting op 65-jarige leeftijd",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 20.5,
+    "baseline_formatted": "20,5 jaar",
+    "unit": "jaar",
+    "actual_value": 20.8,
+    "actual_formatted": "20,8 jaar",
+    "actual_change_pct": 1.5,
+    "tolerance_pct": 4.0,
+    "slider_range": {
+      "min": -10.0,
+      "max": 15.0,
+      "step": 0.2,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 was de gemiddelde resterende levensverwachting voor een 65-jarige in Nederland **20,5 jaar**. Hoeveel procent veranderde deze levensverwachting in 2026?",
+    "value_format_preview": "{val:.1f} jaar resterend",
+    "explanation": "De resterende levensverwachting op 65-jarige leeftijd steeg naar 20,8 jaar (+1,5%). Vrouwen worden na hun 65e gemiddeld nog 22,1 jaar oud, mannen gemiddeld 19,5 jaar.",
+    "cbs_article_title": "CBS StatLine: Levensverwachting; geslacht en leeftijd (37360ned)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/37360ned/table",
+    "statline_table_id": "37360ned"
+  },
+  {
+    "id": "sen_werkende_senioren",
+    "category": "Arbeid & Senioren",
+    "target_ages": [
+      "65+"
+    ],
+    "title": "Aantal werkende 65-plussers (65 tot 75 jaar)",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 385000,
+    "baseline_formatted": "385.000 werkenden",
+    "unit": "personen",
+    "actual_value": 410000,
+    "actual_formatted": "410.000 werkenden",
+    "actual_change_pct": 6.5,
+    "tolerance_pct": 6.0,
+    "slider_range": {
+      "min": -15.0,
+      "max": 25.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 verrichtten **385.000 mensen** tussen de 65 en 75 jaar nog betaald werk (in loondienst of als zzp'er). Hoeveel procent veranderde het aantal werkende 65-plussers in 2026?",
+    "value_format_preview": "{val:,.0f} werkende senioren",
+    "explanation": "Steeds meer gepensioneerden blijven actief op de arbeidsmarkt (+6,5% naar 410.000 werkenden). Aanhoudende personeelskrapte in het onderwijs, zorg en transport maakt de inzet van ervaren senioren populairder.",
+    "cbs_article_title": "CBS StatLine: Arbeidsdeelname en werkloosheid per maand (80590ned)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/80590ned/table",
+    "statline_table_id": "80590ned"
+  },
+  {
+    "id": "sen_totale_bevolking",
+    "category": "Samenleving & Demografie",
+    "target_ages": [
+      "65+"
+    ],
+    "title": "Totale bevolkingsomvang van Nederland",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 18020000,
+    "baseline_formatted": "18.020.000 inwoners",
+    "unit": "inwoners",
+    "actual_value": 18135000,
+    "actual_formatted": "18.135.000 inwoners",
+    "actual_change_pct": 0.64,
+    "tolerance_pct": 3.5,
+    "slider_range": {
+      "min": -5.0,
+      "max": 5.0,
+      "step": 0.1,
+      "default": 0.0
+    },
+    "question_prompt": "Begin 2025 passeerde Nederland de grens van 18 miljoen en telde **18.020.000 inwoners**. Hoeveel procent veranderde het inwonertal in 2026?",
+    "value_format_preview": "{val:,.0f} inwoners",
+    "explanation": "De bevolking groeide met +0,64% naar 18.135.000 inwoners (+115.000 personen). De groei werd volledig gedreven door een positief migratiesaldo, terwijl er door de vergrijzing meer mensen overleden dan er baby's werden geboren.",
+    "cbs_article_title": "CBS StatLine: Bevolkingsontwikkeling; maand en jaar (83474NED)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/83474NED/table",
+    "statline_table_id": "83474NED"
+  },
+  {
+    "id": "voorbeeld_vraag_1",
+    "category": "Woningmarkt",
+    "target_ages": [
+      "25-39"
+    ],
+    "title": "Gemiddelde transactieprijs koopwoning",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 438000.0,
+    "baseline_formatted": "€ 438.000",
+    "unit": "euro",
+    "actual_value": 468000.0,
+    "actual_formatted": "€ 468.000",
+    "actual_change_pct": 6.8,
+    "tolerance_pct": 6.0,
+    "slider_range": {
+      "min": -25.0,
+      "max": 25.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 was de gemiddelde koopprijs **€ 438.000**. Hoeveel procent veranderde de huizenprijs in 2026?",
+    "value_format_preview": "€ {val:,.0f}",
+    "explanation": "Door aanhoudende loongroei en woningtekorten stegen de prijzen met +6,8%.",
+    "cbs_article_title": "CBS StatLine: Datatabel (85773NED)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/85773NED/table",
+    "statline_table_id": "85773NED"
+  },
+  {
+    "id": "voorbeeld_vraag_2",
+    "category": "Arbeidsmarkt & Jongeren",
+    "target_ages": [
+      "15-24"
+    ],
+    "title": "Jeugdwerkloosheid (15-25 jaar)",
+    "period_baseline": "2025",
+    "period_current": "2026",
+    "baseline_value": 8.4,
+    "baseline_formatted": "8.4%",
+    "unit": "%",
+    "actual_value": 8.9,
+    "actual_formatted": "8.9%",
+    "actual_change_pct": 6.0,
+    "tolerance_pct": 6.0,
+    "slider_range": {
+      "min": -25.0,
+      "max": 25.0,
+      "step": 0.5,
+      "default": 0.0
+    },
+    "question_prompt": "In 2025 was de jeugdwerkloosheid **8,4%**. Hoeveel procent veranderde dit in 2026?",
+    "value_format_preview": "{val:.1f}%",
+    "explanation": "De jeugdwerkloosheid steeg licht door conjuncturele afkoeling in de horeca.",
+    "cbs_article_title": "CBS StatLine: Datatabel (80590ned)",
+    "cbs_article_url": "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/80590ned/table",
+    "statline_table_id": "80590ned"
+  }
+]
