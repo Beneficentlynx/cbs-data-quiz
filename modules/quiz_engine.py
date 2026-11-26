@@ -70,6 +70,16 @@ def calculate_question_score(guess_pct: float, actual_pct: float, tolerance_pct:
     return score, round(error, 2), bias
 
 
+def calculate_choice_score(user_choice: str, correct_choice: str) -> Tuple[float, float, str]:
+    """
+    Computes score for multiple-choice questions (100% if exact match, 25% if incorrect).
+    """
+    if str(user_choice).strip().lower() == str(correct_choice).strip().lower():
+        return 100.0, 0.0, "Exact juist! 🎯"
+    else:
+        return 25.0, 1.0, f"Onjuist (keuze: {user_choice})"
+
+
 def generate_wrapped_analytics(answers: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
     Generates full Spotify-Wrapped style analytics based on player's answers.

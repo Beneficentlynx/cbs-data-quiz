@@ -10,6 +10,7 @@ from modules.quiz_engine import (
     calculate_projected_value,
     format_number_dutch,
     calculate_question_score,
+    calculate_choice_score,
     generate_wrapped_analytics,
 )
 from modules.question_importer import (
@@ -227,56 +228,98 @@ elif st.session_state.quiz_started and not st.session_state.quiz_completed:
     """, unsafe_allow_html=True)
 
     if not st.session_state.revealed:
-        # User Guess Input Slider
-        s_min = float(q["slider_range"]["min"])
-        s_max = float(q["slider_range"]["max"])
-        s_step = float(q["slider_range"]["step"])
-        s_default = float(q["slider_range"]["default"])
-
-        guess_pct = st.slider(
-            "Geef uw inschatting van de procentuele verandering ten opzichte van de basiswaarde:",
-            min_value=s_min,
-            max_value=s_max,
-            value=s_default,
-            step=s_step,
-            format="%+.1f%%",
-            key=f"slider_{q['id']}",
-        )
-
-        # Dynamic live preview calculation
-        projected_val = calculate_projected_value(q["baseline_value"], guess_pct)
-        formatted_projected = format_number_dutch(projected_val, q["unit"])
-
-        render_preview_box(guess_pct, formatted_projected, q["baseline_formatted"])
-
-        if st.button("Bevestig inschatting", type="primary"):
-            score, error, bias = calculate_question_score(
-                guess_pct, q["actual_change_pct"], q.get("tolerance_pct", 6.0)
+        if q.get("type") == "choice" and q.get("choices"):
+            st.markdown("<p style='font-size:0.95rem; font-weight:600; margin-bottom:8px;'>Maak uw keuze:</p>", unsafe_allow_html=True)
+            selected_choice = st.radio(
+                "Keuzeopties:",
+                q["choices"],
+                key=f"choice_{q['id']}",
+                label_visibility="collapsed",
             )
 
-            record = {
-                "id": q["id"],
-                "title": q["title"],
-                "category": q["category"],
-                "guess_pct": guess_pct,
-                "projected_val": projected_val,
-                "actual_pct": q["actual_change_pct"],
-                "actual_value": q["actual_value"],
-                "score": score,
-                "error": error,
-                "bias": bias,
-            }
-            st.session_state.answers.append(record)
-            st.session_state.last_revealed_data = {
-                "question": q,
-                "guess_pct": guess_pct,
-                "projected_guess": projected_val,
-                "score": score,
-                "error": error,
-                "bias": bias,
-            }
-            st.session_state.revealed = True
-            st.rerun()
+            if st.button("Bevestig keuze", type="primary"):
+                score, error, bias = calculate_choice_score(
+                    selected_choice, q["actual_value"]
+                )
+
+                record = {
+                    "id": q["id"],
+                    "title": q["title"],
+                    "category": q["category"],
+                    "guess_pct": 0.0,
+                    "user_choice": selected_choice,
+                    "projected_val": 0.0,
+                    "actual_pct": 0.0,
+                    "actual_value": q["actual_value"],
+                    "score": score,
+                    "error": error,
+                    "bias": bias,
+                }
+                st.session_state.answers.append(record)
+                q_copy = dict(q)
+                q_copy["user_choice"] = selected_choice
+                st.session_state.last_revealed_data = {
+                    "question": q_copy,
+                    "guess_pct": 0.0,
+                    "projected_guess": 0.0,
+                    "score": score,
+                    "error": error,
+                    "bias": bias,
+                }
+                st.session_state.revealed = True
+                st.rerun()
+
+        else:
+            # User Guess Input Slider
+            s_min = float(q["slider_range"]["min"])
+            s_max = float(q["slider_range"]["max"])
+            s_step = float(q["slider_range"]["step"])
+            s_default = float(q["slider_range"]["default"])
+
+            guess_pct = st.slider(
+                "Geef uw inschatting van de procentuele verandering ten opzichte van de basiswaarde:",
+                min_value=s_min,
+                max_value=s_max,
+                value=s_default,
+                step=s_step,
+                format="%+.1f%%",
+                key=f"slider_{q['id']}",
+            )
+
+            # Dynamic live preview calculation
+            projected_val = calculate_projected_value(q["baseline_value"], guess_pct)
+            formatted_projected = format_number_dutch(projected_val, q["unit"])
+
+            render_preview_box(guess_pct, formatted_projected, q["baseline_formatted"])
+
+            if st.button("Bevestig inschatting", type="primary"):
+                score, error, bias = calculate_question_score(
+                    guess_pct, q["actual_change_pct"], q.get("tolerance_pct", 6.0)
+                )
+
+                record = {
+                    "id": q["id"],
+                    "title": q["title"],
+                    "category": q["category"],
+                    "guess_pct": guess_pct,
+                    "projected_val": projected_val,
+                    "actual_pct": q["actual_change_pct"],
+                    "actual_value": q["actual_value"],
+                    "score": score,
+                    "error": error,
+                    "bias": bias,
+                }
+                st.session_state.answers.append(record)
+                st.session_state.last_revealed_data = {
+                    "question": q,
+                    "guess_pct": guess_pct,
+                    "projected_guess": projected_val,
+                    "score": score,
+                    "error": error,
+                    "bias": bias,
+                }
+                st.session_state.revealed = True
+                st.rerun()
 
     else:
         # Revealed state

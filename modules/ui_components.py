@@ -350,23 +350,44 @@ def render_feedback_card(
 
     # Side-by-side comparison using standard metrics
     m1, m2 = st.columns(2)
-    with m1:
-        st.metric(
-            label="Uw schatting",
-            value=f"{sign_guess}{guess_pct:.1f}%",
-            delta=bias,
-            delta_color="off",
-        )
-        st.caption(f"Geschatte peilwaarde: {format_number_dutch(projected_guess, question['unit'])} (was: {question['baseline_formatted']})")
+    if question.get("type") == "choice":
+        user_choice = question.get("user_choice", str(guess_pct))
+        is_correct = score >= 90
+        with m1:
+            st.metric(
+                label="Uw antwoord",
+                value=str(user_choice),
+                delta="Correct" if is_correct else "Niet correct",
+                delta_color="normal" if is_correct else "inverse",
+            )
+            st.caption(f"Situatie {question.get('period_baseline', '2025')}: {question.get('baseline_formatted', '')}")
 
-    with m2:
-        st.metric(
-            label="CBS realisatie 2026",
-            value=f"{sign_actual}{actual_pct:.1f}%",
-            delta=f"Afwijking: {error:.1f} procentpunt",
-            delta_color="off",
-        )
-        st.caption(f"Feitelijke uitkomst: {question['actual_formatted']}")
+        with m2:
+            st.metric(
+                label="CBS uitkomst 2026",
+                value=str(question.get("actual_value", "")),
+                delta="Feitelijke registratie",
+                delta_color="off",
+            )
+            st.caption(f"Gevalideerd via StatLine tabel {question.get('statline_table_id', '')}")
+    else:
+        with m1:
+            st.metric(
+                label="Uw schatting",
+                value=f"{sign_guess}{guess_pct:.1f}%",
+                delta=bias,
+                delta_color="off",
+            )
+            st.caption(f"Geschatte peilwaarde: {format_number_dutch(projected_guess, question['unit'])} (was: {question['baseline_formatted']})")
+
+        with m2:
+            st.metric(
+                label="CBS realisatie 2026",
+                value=f"{sign_actual}{actual_pct:.1f}%",
+                delta=f"Afwijking: {error:.1f} procentpunt",
+                delta_color="off",
+            )
+            st.caption(f"Feitelijke uitkomst: {question['actual_formatted']}")
 
     # Editorial Context in standard informational block
     st.info(f"**Achtergrond van de mutatie:**\n\n{question['explanation']}", icon="ℹ️")

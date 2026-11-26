@@ -136,9 +136,14 @@ def generate_spotify_wrapped_story_card(wrapped: Dict[str, Any]) -> bytes:
         draw.text((195, y_entry + 2), q_title, font=font_list_title, fill=(30, 41, 59))
 
         # Sub line
+        if q.get("user_choice"):
+            sub_text = f"Keuze: {q['user_choice']} | CBS: {q.get('actual_value', '')}"
+        else:
+            sub_text = f"Schatting: {q['guess_pct']:+.1f}% | Werkelijk: {q['actual_pct']:+.1f}%"
+
         draw.text(
             (195, y_entry + 36),
-            f"Schatting: {q['guess_pct']:+.1f}% | Werkelijk: {q['actual_pct']:+.1f}%",
+            sub_text,
             font=font_list_meta,
             fill=(100, 116, 139),
         )

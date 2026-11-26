@@ -7,6 +7,7 @@ from modules.quiz_engine import (
     calculate_projected_value,
     format_number_dutch,
     calculate_question_score,
+    calculate_choice_score,
     generate_wrapped_analytics,
 )
 
@@ -51,7 +52,15 @@ def test_scoring():
     # Even far off (e.g. off by 25%), score is >= 15 points (never 0 points)
     score, error, bias = calculate_question_score(30.0, 5.0, 6.0)
     assert score >= 15.0, f"Expected >= 15, got {score}"
-    print(f"✅ Friendly scoring formula verified (far off score: {score}).")
+
+    # Choice question scoring
+    c_score, c_err, c_bias = calculate_choice_score("Juli", "Juli")
+    assert c_score == 100.0 and c_err == 0.0
+
+    w_score, w_err, w_bias = calculate_choice_score("Januari", "Juli")
+    assert w_score == 25.0 and w_err == 1.0
+
+    print(f"✅ Friendly scoring formula verified (far off score: {score}, choice exact: {c_score}, choice wrong: {w_score}).")
 
 
 def test_wrapped_generation():

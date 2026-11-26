@@ -29,24 +29,56 @@ def normalize_question_record(raw: Dict[str, Any]) -> Tuple[Union[Dict[str, Any]
 
     category = str(raw.get("category", "Algemeen")).strip()
 
-    # Parse target ages
+    # Parse target ages with smart mapping (e.g. 18-24 -> 15-24)
     target_ages = raw.get("target_ages", [])
     if isinstance(target_ages, str):
-        # comma or semicolon separated
         target_ages = [a.strip() for a in target_ages.replace(";", ",").split(",") if a.strip()]
     elif not isinstance(target_ages, list):
         target_ages = ["25-39"]
 
-    valid_ages = [a for a in target_ages if a in VALID_AGE_CATEGORIES]
+    age_mapping = {"18-24": "15-24", "15-24": "15-24", "25-39": "25-39", "40-64": "40-64", "65+": "65+"}
+    normalized_ages = [age_mapping.get(str(a).strip().replace("“", "").replace("”", "").replace('"', ''), str(a).strip()) for a in target_ages]
+    valid_ages = list(dict.fromkeys([a for a in normalized_ages if a in VALID_AGE_CATEGORIES]))
     if not valid_ages:
-        return None, f"Vraag '{qid}': geen geldige leeftijdscategorie (kies uit: 15-24, 25-39, 40-64, 65+)"
+        valid_ages = ["25-39"]
 
-    # Numeric values
-    try:
-        base_val = float(str(raw.get("baseline_value", 0)).replace(",", ".").replace("€", "").strip())
-        act_val = float(str(raw.get("actual_value", 0)).replace(",", ".").replace("€", "").strip())
-    except (ValueError, TypeError):
-        return None, f"Vraag '{qid}': 'baseline_value' of 'actual_value' is geen geldig getal"
+    # Check question type (slider vs choice)
+    q_type = str(raw.get("type", "")).strip().lower()
+    choices = raw.get("choices", [])
+    if choices or q_type == "choice" or not str(raw.get("baseline_value", "")).replace(".", "").replace(",", "").isdigit():
+        q_type = "choice" if choices or not str(raw.get("baseline_value", "")).replace(".", "").replace(",", "").replace("-", "").isdigit() else "slider"
+
+    if q_type == "choice":
+        base_val = str(raw.get("baseline_value", "")).strip()
+        act_val = str(raw.get("actual_value", "")).strip()
+        actual_change = 0.0
+        if not choices:
+            choices = [base_val, act_val]
+    else:
+        # Numeric values
+        try:
+            base_str = str(raw.get("baseline_value", 0)).replace("€", "").replace("%", "").strip()
+            # handle dot thousands separator vs decimal: if contains dot and comma, or dot followed by 3 digits
+            if "," in base_str and "." in base_str:
+                base_str = base_str.replace(".", "").replace(",", ".")
+            elif "," in base_str:
+                base_str = base_str.replace(",", ".")
+            elif base_str.count(".") == 1 and len(base_str.split(".")[1]) == 3 and float(base_str) > 100:
+                # likely thousands separator e.g. 489.072
+                base_str = base_str.replace(".", "")
+
+            act_str = str(raw.get("actual_value", 0)).replace("€", "").replace("%", "").strip()
+            if "," in act_str and "." in act_str:
+                act_str = act_str.replace(".", "").replace(",", ".")
+            elif "," in act_str:
+                act_str = act_str.replace(",", ".")
+            elif act_str.count(".") == 1 and len(act_str.split(".")[1]) == 3 and float(act_str) > 100:
+                act_str = act_str.replace(".", "")
+
+            base_val = float(base_str)
+            act_val = float(act_str)
+        except (ValueError, TypeError):
+            return None, f"Vraag '{qid}': 'baseline_value' of 'actual_value' is geen geldig getal"
 
     # Auto-calculate percentage change if missing or zero
     actual_change = raw.get("actual_change_pct")
@@ -111,6 +143,8 @@ def normalize_question_record(raw: Dict[str, Any]) -> Tuple[Union[Dict[str, Any]
 
     cleaned = {
         "id": qid,
+        "type": q_type,
+        "choices": choices,
         "category": category,
         "target_ages": valid_ages,
         "title": title,
