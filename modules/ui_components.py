@@ -407,35 +407,77 @@ def render_feedback_card(
 
 def render_wrapped_screen(wrapped: Dict[str, Any]):
     """
-    Renders an uncluttered, professional CBS results report without AI gimmicks.
-    Includes the official 9:16 Spotify-Wrapped share card export.
+    Renders the CBS Wrapped results report with the Wrapped banner and story card placed at the top.
     """
     best_cat = wrapped["best_category"]
     worst_cat = wrapped["worst_category"]
     best_3 = wrapped["best_3_questions"]
     worst_3 = wrapped["worst_3_questions"]
 
-    # 1. SAMENVATTING
-    st.markdown("## Samenvatting van uw uitkomsten")
+    # 1. BOVENAAN: HET CBS WRAPPED BANNER & STORY CARD
+    st.markdown("## 📊 Uw CBS Wrapped 2026")
+    st.markdown(
+        "<p style='color: #486581; margin-top: -6px; margin-bottom: 20px; font-size: 1.05rem;'>"
+        "Uw persoonlijke statistische feitencheck — gevalideerd tegen officiële cijfers van het Centraal Bureau voor de Statistiek."
+        "</p>",
+        unsafe_allow_html=True,
+    )
 
-    res_col1, res_col2 = st.columns([1, 2])
-    with res_col1:
-        st.metric(
-            label="Totale score",
-            value=f"{wrapped['total_score']:.0f}%",
-            delta=wrapped['bias_label'],
-            delta_color="off",
-        )
-    with res_col2:
+    story_png = generate_spotify_wrapped_story_card(wrapped)
+
+    col_hero, col_card = st.columns([1.15, 0.85])
+
+    with col_hero:
+        # Profile Qualification Card
+        bias_color = "#271D6C"
         st.markdown(f"""
-        <div style="background: #F0F4F8; border-left: 4px solid #271D6C; padding: 14px 18px; border-radius: 4px;">
-            <div style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700; color: #271D6C;">Profielkwalificatie</div>
-            <div style="font-size: 1.2rem; font-weight: 700; color: #091D23; margin: 2px 0;">{wrapped['archetype']}</div>
-            <p style="margin: 4px 0 0 0; font-size: 0.9rem; color: #334E68; line-height: 1.5;">{wrapped['archetype_desc']}</p>
+        <div style="background: #FFFFFF; border: 1px solid #D9E2EC; border-left: 5px solid #271D6C; border-radius: 6px; padding: 18px 20px; margin-bottom: 16px;">
+            <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #00A1CD; letter-spacing: 0.05em; margin-bottom: 4px;">#CBSWRAPPED 2026</div>
+            <div style="display: flex; align-items: baseline; gap: 12px; margin: 4px 0 10px 0;">
+                <span style="font-size: 2.8rem; font-weight: 800; color: #271D6C; line-height: 1;">{wrapped['total_score']:.0f}%</span>
+                <span style="font-size: 0.95rem; font-weight: 600; color: #52606D;">totale nauwkeurigheid</span>
+            </div>
+            <div style="font-size: 1.2rem; font-weight: 700; color: #091D23;">{wrapped['archetype']}</div>
+            <p style="margin: 6px 0 12px 0; font-size: 0.9rem; color: #334E68; line-height: 1.5;">{wrapped['archetype_desc']}</p>
+            <div style="font-size: 0.8rem; background: #F0F4F8; color: #102A43; padding: 5px 12px; border-radius: 4px; display: inline-block; font-weight: 600;">
+                {wrapped['bias_label']}
+            </div>
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("<br/>", unsafe_allow_html=True)
+        st.download_button(
+            label="📲 Story-kaart downloaden (PNG)",
+            data=story_png,
+            file_name="cbs_wrapped_2026.png",
+            mime="image/png",
+            type="primary",
+            use_container_width=True,
+        )
+
+        share_msg = (
+            f"📊 CBS Feitencheck 2026\n"
+            f"🏆 Totale score: {wrapped['total_score']:.0f}%\n"
+            f"🎖️ Kwalificatie: {wrapped['archetype']}\n"
+            f"🌟 Beste thema: {best_cat[0]} ({best_cat[1]:.0f}%)\n"
+            f"Centraal Bureau voor de Statistiek — Voor wat er feitelijk gebeurt."
+        )
+        encoded_msg = urllib.parse.quote(share_msg)
+
+        st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
+        col_wa, col_li = st.columns(2)
+        with col_wa:
+            st.link_button("💬 Deel via WhatsApp", f"https://api.whatsapp.com/send?text={encoded_msg}", use_container_width=True)
+        with col_li:
+            st.link_button("💼 Deel op LinkedIn", f"https://www.linkedin.com/feed/?shareActive=true&text={encoded_msg}", use_container_width=True)
+
+    with col_card:
+        st.image(
+            story_png,
+            caption="Spotify-Wrapped Story (9:16 mobiel formaat)",
+            use_container_width=True,
+        )
+
+    st.markdown("<hr style='border: none; border-top: 1px solid #D9E2EC; margin: 28px 0;'/>", unsafe_allow_html=True)
 
     # 2. THEMA EVALUATIE (Clean standard columns)
     st.markdown("### Analyse per statistisch thema")
@@ -466,72 +508,41 @@ def render_wrapped_screen(wrapped: Dict[str, Any]):
     table_rows = []
     # Add best 3
     for q in best_3:
+        if q.get("user_choice"):
+            schatting_txt = str(q["user_choice"])
+            werkelijk_txt = str(q.get("actual_value", ""))
+        else:
+            schatting_txt = f"{q['guess_pct']:+.1f}%"
+            werkelijk_txt = f"{q['actual_pct']:+.1f}%"
+
         table_rows.append({
             "Indicator": q["title"],
             "Thema": q["category"],
-            "Uw schatting": f"{q['guess_pct']:+.1f}%",
-            "CBS realisatie": f"{q['actual_pct']:+.1f}%",
+            "Uw antwoord": schatting_txt,
+            "CBS realisatie": werkelijk_txt,
             "Score": f"{q['score']:.0f}%",
-            "Status": "Nauwkeurig",
+            "Beoordeling": "Nauwkeurig",
         })
     # Add worst
     for q in worst_3[:2]:
+        if q.get("user_choice"):
+            schatting_txt = str(q["user_choice"])
+            werkelijk_txt = str(q.get("actual_value", ""))
+        else:
+            schatting_txt = f"{q['guess_pct']:+.1f}%"
+            werkelijk_txt = f"{q['actual_pct']:+.1f}%"
+
         table_rows.append({
             "Indicator": q["title"],
             "Thema": q["category"],
-            "Uw schatting": f"{q['guess_pct']:+.1f}%",
-            "CBS realisatie": f"{q['actual_pct']:+.1f}%",
+            "Uw antwoord": schatting_txt,
+            "CBS realisatie": werkelijk_txt,
             "Score": f"{q['score']:.0f}%",
-            "Status": "Afwijking",
+            "Beoordeling": "Afwijking",
         })
 
     df_results = pd.DataFrame(table_rows)
     st.dataframe(df_results, use_container_width=True, hide_index=True)
 
-    st.markdown("<br/>", unsafe_allow_html=True)
-
-    # 4. RESULTATEN EXPORTEREN EN DELEN (Spotify-Wrapped Story Formaat)
-    st.markdown("### Resultaat exporteren en delen")
-    st.write(
-        "U kunt uw resultaten downloaden als verticale **Story-kaart (9:16 formaat)** "
-        "in Spotify-Wrapped stijl voor weergave op mobiele apparaten, Instagram Stories of WhatsApp Status."
-    )
-
-    story_png = generate_spotify_wrapped_story_card(wrapped)
-
-    col_btn, col_img = st.columns([1, 1])
-
-    with col_btn:
-        st.download_button(
-            label="Story-kaart downloaden (PNG)",
-            data=story_png,
-            file_name="cbs_feitencheck_2026.png",
-            mime="image/png",
-            type="primary",
-            use_container_width=True,
-        )
-
-        st.markdown("<div style='margin-top: 12px;'></div>", unsafe_allow_html=True)
-
-        share_msg = (
-            f"CBS Feitencheck 2026\n"
-            f"Totale score: {wrapped['total_score']:.0f}%\n"
-            f"Kwalificatie: {wrapped['archetype']}\n"
-            f"Beste thema: {best_cat[0]} ({best_cat[1]:.0f}%)\n"
-            f"Centraal Bureau voor de Statistiek — Voor wat er feitelijk gebeurt."
-        )
-        encoded_msg = urllib.parse.quote(share_msg)
-
-        st.link_button("Deel via WhatsApp", f"https://api.whatsapp.com/send?text={encoded_msg}", use_container_width=True)
-        st.link_button("Deel op LinkedIn", f"https://www.linkedin.com/feed/?shareActive=true&text={encoded_msg}", use_container_width=True)
-        st.link_button("Deel op X", f"https://twitter.com/intent/tweet?text={encoded_msg}", use_container_width=True)
-
-        with st.expander("Tekstversie voor klembord"):
-            st.code(share_msg, language="text")
-
-    with col_img:
-        st.image(
-            story_png,
-            caption="Voorbeeld: Story-kaart (9:16 formaat)",
-            use_container_width=True,
-        )
+    with st.expander("Tekstversie voor klembord"):
+        st.code(share_msg, language="text")
