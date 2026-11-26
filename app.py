@@ -4,7 +4,18 @@ CBS Data Quiz & Wrapped - Streamlit Application
 
 import os
 import re
+import importlib
 import streamlit as st
+
+import modules.cbs_api
+import modules.quiz_engine
+import modules.question_importer
+import modules.ui_components
+
+# Force fresh reload of custom modules on every Streamlit script execution
+importlib.reload(modules.quiz_engine)
+importlib.reload(modules.ui_components)
+
 from modules.cbs_api import CBSApiManager
 from modules.quiz_engine import (
     calculate_projected_value,

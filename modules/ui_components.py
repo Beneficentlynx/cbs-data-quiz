@@ -81,21 +81,41 @@ def apply_custom_css():
 
     /* Standard responsive page container */
     .block-container {
-        padding-top: 2rem !important;
+        padding-top: 1.5rem !important;
         padding-bottom: 3rem !important;
-        max-width: 920px !important;
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+        max-width: 860px !important;
+    }
+
+    /* Mobile First Adjustments */
+    @media (max-width: 680px) {
+        .block-container {
+            padding-top: 0.85rem !important;
+            padding-bottom: 2rem !important;
+            padding-left: 0.75rem !important;
+            padding-right: 0.75rem !important;
+        }
+
+        /* Stack Streamlit columns vertically on mobile screens */
+        div[data-testid="column"] {
+            width: 100% !important;
+            flex: 1 1 100% !important;
+            min-width: 100% !important;
+            margin-bottom: 10px !important;
+        }
     }
 
     /* Top Government / CBS Bar */
     .cbs-topbar {
         border-bottom: 1px solid #D9E2EC;
-        padding-bottom: 14px;
-        margin-bottom: 24px;
+        padding-bottom: 12px;
+        margin-bottom: 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        gap: 12px;
+        gap: 10px;
     }
     .cbs-logo-container {
         display: inline-flex;
@@ -104,16 +124,28 @@ def apply_custom_css():
         line-height: 1;
     }
     .cbs-logo-img {
-        height: 50px;
-        max-width: 175px;
+        height: 48px;
+        max-width: 165px;
         width: auto;
         display: block;
         object-fit: contain;
     }
     @media (max-width: 600px) {
+        .cbs-topbar {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
         .cbs-logo-img {
-            height: 40px;
-            max-width: 140px;
+            height: 38px;
+            max-width: 135px;
+        }
+        .cbs-meta-status {
+            width: 100%;
+            justify-content: flex-start;
+            font-size: 0.75rem !important;
+            padding: 4px 8px !important;
         }
     }
     .cbs-meta-status {
@@ -125,7 +157,7 @@ def apply_custom_css():
         border: 1px solid #D9E2EC;
     }
 
-    /* Headings */
+    /* Responsive Typography */
     h1 {
         font-size: 1.85rem !important;
         font-weight: 700 !important;
@@ -138,7 +170,7 @@ def apply_custom_css():
         font-size: 1.4rem !important;
         font-weight: 700 !important;
         color: #091D23 !important;
-        margin-top: 1.5rem !important;
+        margin-top: 1.3rem !important;
         margin-bottom: 0.5rem !important;
     }
     h3 {
@@ -147,6 +179,32 @@ def apply_custom_css():
         color: #271D6C !important;
         margin-top: 1rem !important;
         margin-bottom: 0.5rem !important;
+    }
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 1.4rem !important;
+            line-height: 1.25 !important;
+        }
+        h2 {
+            font-size: 1.2rem !important;
+            margin-top: 1rem !important;
+        }
+        h3 {
+            font-size: 1.05rem !important;
+        }
+        .cbs-question-title {
+            font-size: 1.12rem !important;
+        }
+        .cbs-question-text {
+            font-size: 0.98rem !important;
+            line-height: 1.5 !important;
+        }
+        .cbs-preview-box {
+            padding: 12px 14px !important;
+        }
+        .cbs-preview-number {
+            font-size: 1.2rem !important;
+        }
     }
 
     /* Intro Lead Text */
@@ -175,17 +233,17 @@ def apply_custom_css():
     .cbs-panel {
         background: #FFFFFF;
         border: 1px solid #D9E2EC;
-        border-radius: 4px;
-        padding: 20px 24px;
-        margin-bottom: 20px;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-bottom: 18px;
     }
     .cbs-panel-header {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         font-weight: 700;
         color: #271D6C;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
     }
 
     /* Question Box */
@@ -193,15 +251,15 @@ def apply_custom_css():
         background: #FFFFFF;
         border: 1px solid #D9E2EC;
         border-left: 4px solid #271D6C;
-        border-radius: 4px;
-        padding: 20px 24px;
-        margin-bottom: 20px;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-bottom: 18px;
     }
     .cbs-question-title {
         font-size: 1.25rem;
         font-weight: 700;
         color: #091D23;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
     .cbs-question-text {
         font-size: 1.05rem;
@@ -213,12 +271,12 @@ def apply_custom_css():
     .cbs-status-bar {
         background: #F0F4F8;
         border: 1px solid #D9E2EC;
-        border-radius: 4px;
-        padding: 10px 18px;
+        border-radius: 6px;
+        padding: 10px 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
         font-size: 0.9rem;
     }
 
@@ -226,15 +284,16 @@ def apply_custom_css():
     .cbs-preview-box {
         background: #F8FAFC;
         border: 1px solid #BCCCDC;
-        border-radius: 4px;
+        border-radius: 6px;
         padding: 14px 18px;
-        margin: 16px 0;
+        margin: 14px 0;
     }
     .cbs-preview-label {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         color: #486581;
         text-transform: uppercase;
         font-weight: 700;
+        letter-spacing: 0.04em;
     }
     .cbs-preview-number {
         font-size: 1.35rem;
@@ -243,16 +302,21 @@ def apply_custom_css():
         margin: 2px 0;
     }
 
-    /* Button Overrides */
+    /* Touch-friendly buttons for mobile */
+    div.stButton > button {
+        min-height: 48px !important;
+        font-weight: 600 !important;
+        font-size: 1rem !important;
+        border-radius: 6px !important;
+        padding: 0.6rem 1.2rem !important;
+        box-shadow: none !important;
+        width: 100% !important;
+        touch-action: manipulation !important;
+    }
     div.stButton > button[kind="primary"] {
         background-color: #271D6C !important;
         color: #FFFFFF !important;
         border: 1px solid #271D6C !important;
-        border-radius: 4px !important;
-        font-weight: 600 !important;
-        font-size: 0.95rem !important;
-        padding: 0.5rem 1.2rem !important;
-        box-shadow: none !important;
     }
     div.stButton > button[kind="primary"]:hover {
         background-color: #181045 !important;
@@ -262,8 +326,47 @@ def apply_custom_css():
         background-color: #FFFFFF !important;
         color: #271D6C !important;
         border: 1px solid #271D6C !important;
-        border-radius: 4px !important;
+    }
+    div.stButton > button[kind="secondary"]:hover {
+        background-color: #F0F4F8 !important;
+    }
+
+    /* Link buttons */
+    div[data-testid="stLinkButton"] > a {
+        min-height: 46px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 0.95rem !important;
         font-weight: 600 !important;
+        border-radius: 6px !important;
+        width: 100% !important;
+    }
+
+    /* Radio button cards: touch friendly for fingers */
+    div[role="radiogroup"] > label {
+        padding: 12px 16px !important;
+        margin-bottom: 8px !important;
+        background: #FFFFFF !important;
+        border: 1px solid #D9E2EC !important;
+        border-radius: 6px !important;
+        min-height: 48px !important;
+        display: flex !important;
+        align-items: center !important;
+        cursor: pointer !important;
+        transition: all 0.15s ease !important;
+    }
+    div[role="radiogroup"] > label:hover {
+        background: #F0F4F8 !important;
+        border-color: #00A1CD !important;
+    }
+
+    /* Responsive Story Card Image */
+    div[data-testid="stImage"] img {
+        border-radius: 8px !important;
+        max-height: 520px !important;
+        object-fit: contain !important;
+        margin: 0 auto !important;
     }
 
     /* Standard Form Labels */
@@ -414,34 +517,34 @@ def render_wrapped_screen(wrapped: Dict[str, Any]):
     best_3 = wrapped["best_3_questions"]
     worst_3 = wrapped["worst_3_questions"]
 
-    # 1. BOVENAAN: HET CBS WRAPPED BANNER & STORY CARD
-    st.markdown("## 📊 Uw CBS Wrapped 2026")
-    st.markdown(
-        "<p style='color: #486581; margin-top: -6px; margin-bottom: 20px; font-size: 1.05rem;'>"
-        "Uw persoonlijke statistische feitencheck — gevalideerd tegen officiële cijfers van het Centraal Bureau voor de Statistiek."
-        "</p>",
-        unsafe_allow_html=True,
-    )
-
     story_png = generate_spotify_wrapped_story_card(wrapped)
 
-    col_hero, col_card = st.columns([1.15, 0.85])
+    # 1. GROTE WRAPPED BANNER BOVENAAN DE PAGINA
+    st.markdown(f"""
+    <div style="background: linear-gradient(135deg, #271D6C 0%, #160D45 50%, #007799 100%); color: #FFFFFF; border-radius: 8px; padding: 22px 26px; margin-bottom: 22px;">
+        <div style="font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; color: #00D4FF; text-transform: uppercase;">#CBSWRAPPED 2026 • JAAROVERZICHT</div>
+        <div style="font-size: 1.85rem; font-weight: 800; color: #FFFFFF; margin: 4px 0 14px 0; line-height: 1.2;">Jouw Statistische Feitencheck</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center;">
+            <div>
+                <div style="font-size: 0.75rem; color: #BEE3F8; text-transform: uppercase; font-weight: 600;">Totale nauwkeurigheid</div>
+                <div style="font-size: 2.8rem; font-weight: 800; color: #FFFFFF; line-height: 1;">{wrapped['total_score']:.0f}%</div>
+            </div>
+            <div style="border-left: 1px solid rgba(255,255,255,0.25); padding-left: 20px;">
+                <div style="font-size: 0.75rem; color: #BEE3F8; text-transform: uppercase; font-weight: 600;">Jouw profielkwalificatie</div>
+                <div style="font-size: 1.3rem; font-weight: 700; color: #00D4FF;">{wrapped['archetype']}</div>
+                <div style="font-size: 0.85rem; color: #E2E8F0; margin-top: 3px;">{wrapped['bias_label']}</div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
-    with col_hero:
-        # Profile Qualification Card
-        bias_color = "#271D6C"
+    # 2. STORY KAART & DIRECT DELEN (Direct onder de Wrapped banner)
+    col_dl, col_card = st.columns([1.1, 0.9])
+    with col_dl:
         st.markdown(f"""
-        <div style="background: #FFFFFF; border: 1px solid #D9E2EC; border-left: 5px solid #271D6C; border-radius: 6px; padding: 18px 20px; margin-bottom: 16px;">
-            <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #00A1CD; letter-spacing: 0.05em; margin-bottom: 4px;">#CBSWRAPPED 2026</div>
-            <div style="display: flex; align-items: baseline; gap: 12px; margin: 4px 0 10px 0;">
-                <span style="font-size: 2.8rem; font-weight: 800; color: #271D6C; line-height: 1;">{wrapped['total_score']:.0f}%</span>
-                <span style="font-size: 0.95rem; font-weight: 600; color: #52606D;">totale nauwkeurigheid</span>
-            </div>
-            <div style="font-size: 1.2rem; font-weight: 700; color: #091D23;">{wrapped['archetype']}</div>
-            <p style="margin: 6px 0 12px 0; font-size: 0.9rem; color: #334E68; line-height: 1.5;">{wrapped['archetype_desc']}</p>
-            <div style="font-size: 0.8rem; background: #F0F4F8; color: #102A43; padding: 5px 12px; border-radius: 4px; display: inline-block; font-weight: 600;">
-                {wrapped['bias_label']}
-            </div>
+        <div style="background: #FFFFFF; border: 1px solid #D9E2EC; border-radius: 6px; padding: 18px 20px; margin-bottom: 16px;">
+            <div style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700; color: #271D6C; margin-bottom: 6px;">Toelichting op uw profiel</div>
+            <p style="margin: 0; font-size: 0.95rem; color: #334E68; line-height: 1.55;">{wrapped['archetype_desc']}</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -463,7 +566,7 @@ def render_wrapped_screen(wrapped: Dict[str, Any]):
         )
         encoded_msg = urllib.parse.quote(share_msg)
 
-        st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
+        st.markdown("<div style='margin-top: 8px;'></div>", unsafe_allow_html=True)
         col_wa, col_li = st.columns(2)
         with col_wa:
             st.link_button("💬 Deel via WhatsApp", f"https://api.whatsapp.com/send?text={encoded_msg}", use_container_width=True)
@@ -477,9 +580,9 @@ def render_wrapped_screen(wrapped: Dict[str, Any]):
             use_container_width=True,
         )
 
-    st.markdown("<hr style='border: none; border-top: 1px solid #D9E2EC; margin: 28px 0;'/>", unsafe_allow_html=True)
+    st.markdown("<hr style='border: none; border-top: 1px solid #D9E2EC; margin: 26px 0;'/>", unsafe_allow_html=True)
 
-    # 2. THEMA EVALUATIE (Clean standard columns)
+    # 3. THEMA EVALUATIE (Clean standard columns)
     st.markdown("### Analyse per statistisch thema")
     col_best, col_worst = st.columns(2)
     with col_best:
